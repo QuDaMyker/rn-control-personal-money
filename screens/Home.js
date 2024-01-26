@@ -37,8 +37,8 @@ function Home() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <LinearGradient
-        colors={[GlobalStyles.colors.primary80, GlobalStyles.colors.primary40]}
-        style={{ flex: 1, paddingHorizontal: 16, paddingTop: 12 }}
+        colors={[GlobalStyles.colors.primary80, "white"]}
+        style={{ flex: 1, paddingHorizontal: 16, paddingTop: 30 }}
       >
         <ScrollView showsVerticalScrollIndicator={false}>
           {/* header information  */}
@@ -108,7 +108,14 @@ function Home() {
                 showsHorizontalScrollIndicator={false}
               >
                 {DUMMY_DATA.map((itemData) => (
-                  <TargetItem key={itemData.id} {...itemData} />
+                  <TargetItem
+                    key={itemData.id}
+                    {...itemData}
+                    style={{
+                      marginRight: 10,
+                      borderWidth: 1,
+                    }}
+                  />
                 ))}
               </ScrollView>
               {/* <FlatList
@@ -139,7 +146,13 @@ function Home() {
                 showsVerticalScrollIndicator={false}
               >
                 {DUMMY_DATA.map((itemData) => (
-                  <TargetItem key={itemData.id} {...itemData} />
+                  <TargetItem
+                    key={itemData.id}
+                    {...itemData}
+                    style={{
+                      borderWidth: 1,
+                    }}
+                  />
                 ))}
               </ScrollView>
             </View>

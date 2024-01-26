@@ -12,21 +12,30 @@ import { GlobalStyles } from "../constants/styles";
 import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import ButtonChosen from "../components/UI/ButtonChosen";
-import Input from "../components/UI/Input";
 
-function AddTransaction() {
+function AddTransaction({ route, navigation }) {
   const [selectedChip, setSelectedChip] = useState(0);
   const [text, setText] = useState("");
+
   const chipPressHandler = (index) => {
     setSelectedChip(index);
   };
+  function choseCategoryHandler() {
+    navigation.navigate("ChosenCategory");
+  }
+  function choseWalletHandler() {
+    navigation.navigate("ChosenWallet");
+  }
+  function choseAccountHandler() {
+    navigation.navigate("ChosenAccount");
+  }
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <LinearGradient
         colors={[GlobalStyles.colors.primary80, "white"]}
-        style={{ flex: 1, paddingHorizontal: 16, paddingTop: 12 }}
+        style={{ flex: 1, paddingHorizontal: 16, paddingTop: 30 }}
       >
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.rootContainer}>
             {/* header */}
             <View style={styles.headerContainer}>
@@ -100,7 +109,7 @@ function AddTransaction() {
                 img={require("../assets/images/ic_example.jpg")}
                 title="Tiền tiêu"
                 amount="5.000.000"
-                onPress={() => {}}
+                onPress={choseWalletHandler}
               />
             </View>
             {/* tai khoan  */}
@@ -110,7 +119,7 @@ function AddTransaction() {
                 img={require("../assets/images/ic_example.jpg")}
                 title="Tiền tiêu"
                 amount="5.000.000"
-                onPress={() => {}}
+                onPress={choseAccountHandler}
               />
             </View>
             {/* danh muc */}
@@ -120,7 +129,7 @@ function AddTransaction() {
                 img={require("../assets/images/ic_example.jpg")}
                 title="Tiền tiêu"
                 amount="5.000.000"
-                onPress={() => {}}
+                onPress={choseCategoryHandler}
               />
             </View>
 

@@ -18,6 +18,9 @@ import {
   Feather,
 } from "@expo/vector-icons";
 import FilterTransaction from "./screens/FilterTransaction";
+import ChosenCategory from "./screens/ChosenCategory";
+import ChosenWallet from "./screens/ChosenWallet";
+import ChosenAccount from "./screens/ChosenAccount";
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
@@ -115,6 +118,30 @@ export default function App() {
             component={FilterTransaction}
             options={{
               headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="ChosenCategory"
+            component={ChosenCategory}
+            options={{
+              title: "Chọn Danh mục",
+              headerShown: true,
+            }}
+          />
+          <Stack.Screen
+            name="ChosenWallet"
+            component={ChosenWallet}
+            options={{
+              title: "Chọn Ví tiền",
+              headerShown: true,
+            }}
+          />
+          <Stack.Screen
+            name="ChosenAccount"
+            component={ChosenAccount}
+            options={{
+              title: "Chọn Tài khoản",
+              headerShown: true,
             }}
           />
         </Stack.Navigator>

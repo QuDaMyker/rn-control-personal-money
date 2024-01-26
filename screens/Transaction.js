@@ -27,8 +27,8 @@ function Transaction() {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <LinearGradient
-        colors={[GlobalStyles.colors.primary80, GlobalStyles.colors.primary40]}
-        style={{ flex: 1, paddingHorizontal: 16, paddingVertical: 12 }}
+        colors={[GlobalStyles.colors.primary80, "white"]}
+        style={{ flex: 1, paddingHorizontal: 16, paddingTop: 30 }}
       >
         <View style={styles.rootContainer}>
           {/* header */}
