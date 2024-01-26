@@ -64,7 +64,7 @@ function Transaction() {
             </Pressable>
           </View>
           {/* chose month */}
-          <View style={styles.yearContainer}>
+          <View style={styles.monthContainer}>
             <Pressable
               onPress={backMonthHandler}
               android_ripple="#ccc"
@@ -77,7 +77,7 @@ function Transaction() {
             <View style={styles.listMonth}>
               <View style={[styles.textMonthContainer, { opacity: 0.5 }]}>
                 <Text style={styles.textMonth}>
-                  Tháng {month - 1 === 0 ? 12 : month - 1}
+                  Tháng {month === 1 ? 12 : month - 1}
                 </Text>
               </View>
               <View style={[styles.textMonthContainer, styles.monthActive]}>
@@ -86,13 +86,15 @@ function Transaction() {
                 </Text>
               </View>
               <View style={[styles.textMonthContainer, { opacity: 0.5 }]}>
-                <Text style={styles.textMonth}>Tháng {month + 1}</Text>
+                <Text style={styles.textMonth}>
+                  Tháng {month === 12 ? 1 : month}
+                </Text>
               </View>
             </View>
             <Pressable
               onPress={forwardMonthHandler}
               android_ripple="#ccc"
-              style={({ pressed }) => pressed && styles.pressed}
+              style={[({ pressed }) => pressed && styles.pressed]}
             >
               <View style={styles.forwardContainer}>
                 <Ionicons name="caret-forward" size={24} color="black" />
@@ -166,6 +168,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     backgroundColor: "white",
     borderRadius: 30,
+  },
+  monthContainer: {
+    marginTop: 8,
+    borderRadius: 8,
+    backgroundColor: GlobalStyles.colors.secondary80,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    paddingHorizontal: 10,
+    paddingVertical: 10,
   },
   listMonth: {
     flexDirection: "row",

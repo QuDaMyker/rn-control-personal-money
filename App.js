@@ -17,6 +17,7 @@ import {
   MaterialCommunityIcons,
   Feather,
 } from "@expo/vector-icons";
+import FilterTransaction from "./screens/FilterTransaction";
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
@@ -56,6 +57,8 @@ function RootView() {
         name="AddTransaction"
         component={AddTransaction}
         options={{
+          headerShown: false,
+          tabBarLabel: "Thêm giao dịch",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="add-circle-outline" size={24} color="black" />
           ),
@@ -102,6 +105,13 @@ export default function App() {
           <Stack.Screen
             name="Welcome"
             component={Welcome}
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="FilterTransaction"
+            component={FilterTransaction}
             options={{
               headerShown: false,
             }}
