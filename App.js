@@ -31,6 +31,7 @@ function RootView() {
         tabBarActiveTintColor: GlobalStyles.colors.primary40,
         tabBarActiveBackgroundColor: GlobalStyles.colors.secondary80,
         tabBarItemStyle: { borderRadius: 5, flex: 1 },
+        tabBarHideOnKeyboard: true,
       }}
     >
       <BottomTab.Screen

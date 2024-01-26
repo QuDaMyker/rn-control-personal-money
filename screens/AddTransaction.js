@@ -1,20 +1,30 @@
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
-import { Chip } from "react-native-paper";
+import {
+  KeyboardAvoidingView,
+  Pressable,
+  SafeAreaView,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { Chip, TextInput } from "react-native-paper";
 import { GlobalStyles } from "../constants/styles";
 import { useState } from "react";
 import { LinearGradient } from "expo-linear-gradient";
 import ButtonChosen from "../components/UI/ButtonChosen";
+import Input from "../components/UI/Input";
+
 function AddTransaction() {
   const [selectedChip, setSelectedChip] = useState(0);
-
+  const [text, setText] = useState("");
   const chipPressHandler = (index) => {
     setSelectedChip(index);
   };
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <LinearGradient
-        colors={[GlobalStyles.colors.primary80, GlobalStyles.colors.primary40]}
-        style={{ flex: 1, paddingHorizontal: 16, paddingVertical: 12 }}
+        colors={[GlobalStyles.colors.primary80, "white"]}
+        style={{ flex: 1, paddingHorizontal: 16, paddingTop: 12 }}
       >
         <ScrollView>
           <View style={styles.rootContainer}>
@@ -24,7 +34,7 @@ function AddTransaction() {
             </View>
             {/* chip */}
             <View style={styles.chipContainer}>
-              <Text style={styles.chipText}>Loại giao dịch</Text>
+              <Text style={styles.textBase}>Loại giao dịch</Text>
               <View style={styles.chipGroup}>
                 <Chip
                   icon=""
@@ -85,7 +95,7 @@ function AddTransaction() {
             </View>
             {/* vi tien */}
             <View style={styles.walletContainer}>
-              <Text style={styles.chipText}>Ví tiền</Text>
+              <Text style={styles.textBase}>Ví tiền</Text>
               <ButtonChosen
                 img={require("../assets/images/ic_example.jpg")}
                 title="Tiền tiêu"
@@ -94,8 +104,8 @@ function AddTransaction() {
               />
             </View>
             {/* tai khoan  */}
-            <View>
-              <Text style={styles.chipText}>Tài khoản</Text>
+            <View style={styles.walletContainer}>
+              <Text style={styles.textBase}>Tài khoản</Text>
               <ButtonChosen
                 img={require("../assets/images/ic_example.jpg")}
                 title="Tiền tiêu"
@@ -104,8 +114,8 @@ function AddTransaction() {
               />
             </View>
             {/* danh muc */}
-            <View>
-              <Text style={styles.chipText}>Danh mục</Text>
+            <View style={styles.walletContainer}>
+              <Text style={styles.textBase}>Danh mục</Text>
               <ButtonChosen
                 img={require("../assets/images/ic_example.jpg")}
                 title="Tiền tiêu"
@@ -113,10 +123,76 @@ function AddTransaction() {
                 onPress={() => {}}
               />
             </View>
+
             {/* input so tien  */}
-            {/* input ghi chu  */}
+            <View style={styles.walletContainer}>
+              <Text style={styles.textBase}>Số tiền</Text>
+              <TextInput
+                mode="outlined"
+                label="Số tiền"
+                textColor="black"
+                outlineColor="black"
+                activeOutlineColor="black"
+                contentStyle={{ borderColor: "black" }}
+                style={styles.amountTextInput}
+                value={text}
+                onChangeText={(text) => setText(text)}
+              />
+            </View>
+            {/* ghi chu */}
+            <View style={styles.walletContainer}>
+              <Text style={styles.textBase}>Ghi Chú</Text>
+              <TextInput
+                mode="outlined"
+                label="Số tiền"
+                textColor="black"
+                outlineColor="black"
+                activeOutlineColor="black"
+                contentStyle={{ borderColor: "black" }}
+                style={styles.amountTextInput}
+                value={text}
+                onChangeText={(text) => setText(text)}
+              />
+            </View>
             {/* input ngay giao dich */}
+            <View style={styles.walletContainer}>
+              <Text style={styles.textBase}>Ngày giao dịch</Text>
+              <TextInput
+                mode="outlined"
+                label="Số tiền"
+                textColor="black"
+                outlineColor="black"
+                activeOutlineColor="black"
+                contentStyle={{ borderColor: "black" }}
+                style={styles.amountTextInput}
+                value={text}
+                onChangeText={(text) => setText(text)}
+              />
+            </View>
             {/* input thoi gian giao dich */}
+            <View>
+              <Text style={styles.textBase}>Thời gian giao dịch</Text>
+              <TextInput
+                mode="outlined"
+                label="Số tiền"
+                textColor="black"
+                outlineColor="black"
+                activeOutlineColor="black"
+                contentStyle={{ borderColor: "black" }}
+                style={styles.amountTextInput}
+                value={text}
+                onChangeText={(text) => setText(text)}
+              />
+            </View>
+            {/* button save  */}
+            <Pressable
+              android_ripple="#ccc"
+              style={({ pressed }) => pressed && styles.pressed}
+            >
+              <View style={styles.buttonContainer}>
+                <Text style={styles.buttonText}>Lưu</Text>
+              </View>
+            </Pressable>
           </View>
         </ScrollView>
       </LinearGradient>
@@ -126,8 +202,12 @@ function AddTransaction() {
 
 export default AddTransaction;
 const styles = StyleSheet.create({
+  pressed: {
+    opacity: 0.75,
+  },
   rootContainer: {
     flex: 1,
+    paddingBottom: 20,
   },
   // header
   headerContainer: {
@@ -145,7 +225,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
   },
-  chipText: {
+  textBase: {
     color: "black",
     fontWeight: "bold",
     fontSize: 18,
@@ -171,4 +251,23 @@ const styles = StyleSheet.create({
     color: "white",
   },
   // wallet
+  walletContainer: {
+    marginVertical: 10,
+  },
+  amountTextInput: {
+    paddingHorizontal: 10,
+  },
+  buttonContainer: {
+    backgroundColor: GlobalStyles.colors.primary40,
+    flex: 1,
+    borderRadius: 20,
+    marginVertical: 20,
+  },
+  buttonText: {
+    textAlign: "center",
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "white",
+    padding: 10,
+  },
 });
