@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     backgroundColor: GlobalStyles.colors.primary80,
     borderRadius: 12,
     height: 100,
+    width: 100,
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",

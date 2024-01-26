@@ -10,7 +10,13 @@ import Transaction from "./screens/Transaction";
 import AddTransaction from "./screens/AddTransaction";
 import Statistics from "./screens/Statistics";
 import Setting from "./screens/Setting";
-
+import {
+  AntDesign,
+  MaterialIcons,
+  Ionicons,
+  MaterialCommunityIcons,
+  Feather,
+} from "@expo/vector-icons";
 const Stack = createNativeStackNavigator();
 const BottomTab = createBottomTabNavigator();
 
@@ -20,13 +26,63 @@ function RootView() {
       initialRouteName="Home"
       screenOptions={{
         headerShown: false,
+        tabBarStyle: { backgroundColor: "white" },
+        tabBarActiveTintColor: GlobalStyles.colors.primary40,
+        tabBarActiveBackgroundColor: GlobalStyles.colors.secondary80,
+        tabBarItemStyle: { borderRadius: 5, flex: 1 },
       }}
     >
-      <BottomTab.Screen name="Home" component={Home} />
-      <BottomTab.Screen name="Transaction" component={Transaction} />
-      <BottomTab.Screen name="AddTransaction" component={AddTransaction} />
-      <BottomTab.Screen name="Statistics" component={Statistics} />
-      <BottomTab.Screen name="Setting" component={Setting} />
+      <BottomTab.Screen
+        name="Home"
+        component={Home}
+        options={{
+          title: "Home",
+          tabBarLabel: "Home",
+          tabBarIcon: ({ color, size }) => (
+            <AntDesign name="home" size={24} color="black" />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Transaction"
+        component={Transaction}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <MaterialIcons name="manage-history" size={24} color="black" />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="AddTransaction"
+        component={AddTransaction}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Ionicons name="add-circle-outline" size={24} color="black" />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Statistics"
+        component={Statistics}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons
+              name="sitemap-outline"
+              size={24}
+              color="black"
+            />
+          ),
+        }}
+      />
+      <BottomTab.Screen
+        name="Setting"
+        component={Setting}
+        options={{
+          tabBarIcon: ({ color, size }) => (
+            <Feather name="settings" size={24} color="black" />
+          ),
+        }}
+      />
     </BottomTab.Navigator>
   );
 }

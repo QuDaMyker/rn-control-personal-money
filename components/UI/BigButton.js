@@ -1,5 +1,6 @@
 import { Image, Pressable, StyleSheet, Text, View } from "react-native";
 import { GlobalStyles } from "../../constants/styles";
+
 function BigButton({ image, title, onPress }) {
   return (
     <Pressable

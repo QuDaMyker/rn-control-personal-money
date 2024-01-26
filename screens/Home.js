@@ -8,7 +8,7 @@ import {
   View,
   useWindowDimensions,
 } from "react-native";
-import { AntDesign, Ionicons, Foundation } from "@expo/vector-icons";
+import { AntDesign, Ionicons, Foundation, Feather } from "@expo/vector-icons";
 import { GlobalStyles } from "../constants/styles";
 import BigButton from "../components/UI/BigButton";
 import { LinearGradient } from "expo-linear-gradient";
@@ -38,9 +38,9 @@ function Home() {
     <SafeAreaView style={{ flex: 1 }}>
       <LinearGradient
         colors={[GlobalStyles.colors.primary80, GlobalStyles.colors.primary40]}
-        style={{ flex: 1, paddingHorizontal: 16, paddingVertical: 12 }}
+        style={{ flex: 1, paddingHorizontal: 16, paddingTop: 12 }}
       >
-        <ScrollView>
+        <ScrollView showsVerticalScrollIndicator={false}>
           {/* header information  */}
           <View>
             <View style={styles.infoContainer}>
@@ -103,11 +103,45 @@ function Home() {
               <Text style={styles.targetText}>Mục tiêu</Text>
             </View>
             <View style={styles.targetList}>
-              <FlatList
+              <ScrollView
+                horizontal={true}
+                showsHorizontalScrollIndicator={false}
+              >
+                {DUMMY_DATA.map((itemData) => (
+                  <TargetItem key={itemData.id} {...itemData} />
+                ))}
+              </ScrollView>
+              {/* <FlatList
+                showsHorizontalScrollIndicator={false}
+                horizontal={true}
                 data={DUMMY_DATA}
                 renderItem={renderTargetItemHandler}
                 keyExtractor={(item) => item.id}
-              />
+              /> */}
+            </View>
+          </View>
+          {/* list recent activity */}
+          <View style={styles.recentActivityContainer}>
+            <View style={styles.recentActivityTextContainer}>
+              <Feather name="activity" size={24} color="black" />
+              <Text style={styles.recentActivityText}>Hoạt động gần đây</Text>
+            </View>
+            <View style={styles.targetList}>
+              {/* <FlatList
+                horizontal={false}
+                showsHorizontalScrollIndicator={false}
+                data={DUMMY_DATA}
+                renderItem={renderTargetItemHandler}
+                keyExtractor={(item) => item.id}
+              /> */}
+              <ScrollView
+                horizontal={false}
+                showsVerticalScrollIndicator={false}
+              >
+                {DUMMY_DATA.map((itemData) => (
+                  <TargetItem key={itemData.id} {...itemData} />
+                ))}
+              </ScrollView>
             </View>
           </View>
         </ScrollView>
@@ -179,11 +213,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
   },
   // target
-  targetContainer: {},
+  targetContainer: {
+    marginVertical: 10,
+  },
   targetTextContainer: {
     flexDirection: "row",
-    justifyContent: "flex-start",
     alignItems: "center",
+    marginVertical: 5,
+    justifyContent: "flex-start",
   },
   targetText: {
     fontSize: 14,
@@ -191,4 +228,18 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   targetList: {},
+  // recent activity
+  recentActivityContainer: {},
+  recentActivityTextContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginVertical: 5,
+    justifyContent: "flex-start",
+  },
+  recentActivityText: {
+    fontSize: 14,
+    fontWeight: "bold",
+    marginLeft: 10,
+  },
+  recentActivityList: {},
 });
