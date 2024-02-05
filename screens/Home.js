@@ -38,7 +38,7 @@ function Home() {
     <SafeAreaView style={{ flex: 1 }}>
       <LinearGradient
         colors={[GlobalStyles.colors.primary80, "white"]}
-        style={{ flex: 1, paddingHorizontal: 16, paddingTop: 30 }}
+        style={{ flex: 1, paddingHorizontal: 16, paddingTop: 50 }}
       >
         <ScrollView showsVerticalScrollIndicator={false}>
           {/* header information  */}
